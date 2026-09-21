@@ -8,5 +8,9 @@ jobs:
               uses: actions/checkout@v4
             - name: Welcome
               run: echo "Hello, world!"
+            - name: List & read files
+              run: |
+                ls -latr
+                cat README.md
             - name: Goodbye
               run: echo "Goodbye, world!"
