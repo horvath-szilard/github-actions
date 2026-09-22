@@ -15,15 +15,18 @@ jobs:
     
     test:
         runs-on: ubuntu-latest
+        needs: build
         steps:
             - name: Sleep for 10 seconds
               run: sleep 10
 
             - name: Check if file exists
               run: grep -i "dragon" ascii_art.txt || echo "File not found or content missing"
+        
 
     deploy: 
         runs-on: ubuntu-latest
+        needs: test
         steps:
             - name: Deploy ASCII Art
               run: |
