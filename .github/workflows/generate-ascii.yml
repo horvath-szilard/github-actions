@@ -14,7 +14,7 @@ jobs:
                 ./ascii-script.sh
             
             - name: Upload ASCII Art
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v7
               with:
                 name: ascii_art
                 path: ascii_art.txt
@@ -24,7 +24,7 @@ jobs:
         needs: build
         steps:
             - name: Download ASCII Art
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v8
               with:
                 name: ascii_art
                 path: .
@@ -40,7 +40,7 @@ jobs:
         needs: test
         steps:
             - name: Download ASCII Art
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v8
               with:
                 name: ascii_art
                 path: .
