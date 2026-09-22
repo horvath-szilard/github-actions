@@ -12,11 +12,22 @@ jobs:
               run: |
                 chmod +x ascii-script.sh  
                 ./ascii-script.sh
+            
+            - name: Upload ASCII Art
+              uses: actions/upload-artifact@v3
+              with:
+                name: ascii_art
+                path: ascii_art.txt
     
     test:
         runs-on: ubuntu-latest
         needs: build
         steps:
+            - name: Download ASCII Art
+              uses: actions/download-artifact@v3
+              with:
+                name: ascii_art
+                path: .
             - name: Sleep for 10 seconds
               run: sleep 10
 
@@ -28,6 +39,11 @@ jobs:
         runs-on: ubuntu-latest
         needs: test
         steps:
+            - name: Download ASCII Art
+              uses: actions/download-artifact@v3
+              with:
+                name: ascii_art
+                path: .
             - name: Deploy ASCII Art
               run: |
                 echo "Deploying ASCII Art..."
