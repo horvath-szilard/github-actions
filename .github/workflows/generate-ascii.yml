@@ -2,7 +2,7 @@ name: Generate ASCII Art
 on: push
 
 jobs:
-    ascii_job:
+    build:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
@@ -12,3 +12,20 @@ jobs:
               run: |
                 chmod +x ascii-script.sh  
                 ./ascii-script.sh
+    
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Sleep for 10 seconds
+              run: sleep 10
+
+            - name: Check if file exists
+              run: grep -i "dragon" ascii_art.txt || echo "File not found or content missing"
+
+    deploy: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy ASCII Art
+              run: |
+                echo "Deploying ASCII Art..."
+                cat ascii_art.txt
